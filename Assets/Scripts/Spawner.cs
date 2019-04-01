@@ -30,7 +30,9 @@ public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 		Vector3 m_pos = combinator.transform.position;
 		m_pos.y -= 4;
 
-		Instantiate(criatura, m_pos, Quaternion.identity);
+		var instance = Instantiate(criatura, m_pos, Quaternion.identity);
+
+		instance.GetComponent<Draggable>().Initialize(combinator);
 	}
 
 	public void OnPointerEnter(PointerEventData pointerEventData) { }

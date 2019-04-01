@@ -19,6 +19,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IEndDragHandler, IInitiali
 	private SpriteRenderer m_spriteRenderer;
 	private Color m_NewColor;
 
+
 	void Start()
     {
 		
@@ -28,6 +29,12 @@ public class Draggable : MonoBehaviour, IDragHandler, IEndDragHandler, IInitiali
 		var originalPos = criatura.transform.position; //pega a posição inicial do bicho
 
 	}
+
+	public void Initialize(GameObject combinator)
+	{
+		this.combinator = combinator;
+	}
+
 
     // Update is called once per frame
     void Update()
@@ -96,7 +103,8 @@ public class Draggable : MonoBehaviour, IDragHandler, IEndDragHandler, IInitiali
 				Debug.Log("Hora de morfar");
 				criatura.SetActive(false); //desliga o bicho
 
-				combinator.transform.DOScale(2f, 1000);
+				combinator.transform.DOScale(10f, 0.5f);
+				combinator.transform.DOScale(5f, 0.5f);
 			}
 
 			if (cast.transform.tag == "Other")
