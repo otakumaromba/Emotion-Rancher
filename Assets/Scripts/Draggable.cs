@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class Draggable : MonoBehaviour, /*IPointerClickHandler,*/ IPointerEnterHandler, IPointerExitHandler, IDragHandler, IEndDragHandler, IInitializePotentialDragHandler
+public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IDragHandler, /*IEndDragHandler, */ IInitializePotentialDragHandler
 {
 
 	public GameObject criatura;
@@ -15,6 +15,7 @@ public class Draggable : MonoBehaviour, /*IPointerClickHandler,*/ IPointerEnterH
 	BoxCollider2D m_Collider;
 	public LayerMask layerMask;
 	public Vector2 originalPos;
+	public Vector3 newPos;
 
 	private SpriteRenderer m_spriteRenderer;
 	private Color m_NewColor;
@@ -22,10 +23,10 @@ public class Draggable : MonoBehaviour, /*IPointerClickHandler,*/ IPointerEnterH
 	public GameObject creatureName;
 
 	private bool onHover;
+	private bool clickedStatus;
 
 	void Start()
     {
-		
 		//cam = Camera.main;
 		m_Collider = GetComponent<BoxCollider2D>();
 		m_spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -45,18 +46,11 @@ public class Draggable : MonoBehaviour, /*IPointerClickHandler,*/ IPointerEnterH
         
     }
 
-	public void OnPointerClick(PointerEventData pointerEventData)
-	{
-		Debug.Log("Clicou na criatura");
-		OnEndDrag(pointerEventData);
-	}
-
-
 	public void OnPointerEnter(PointerEventData pointerEventData)
 	{
 		Debug.Log("Hover na criatura");
 		onHover = true;
-		StartCoroutine("Wait");
+		StartCoroutine("WaitForName");
 		
 	}
 
@@ -70,9 +64,9 @@ public class Draggable : MonoBehaviour, /*IPointerClickHandler,*/ IPointerEnterH
 		}
 	}
 
-	IEnumerator Wait()
+	IEnumerator WaitForName()
 	{
-		Debug.Log("Esperando");
+		Debug.Log("Esperando para mostrar o nome");
 		yield return new WaitForSecondsRealtime(0.5f);
 		if (onHover == true)
 		{
@@ -83,29 +77,49 @@ public class Draggable : MonoBehaviour, /*IPointerClickHandler,*/ IPointerEnterH
 		}
 	}
 
+	public void OnPointerDown(PointerEventData pointerEventData)
+	{
+		criatura.transform.DOScale(1.5f, 0.1f);
+	}
+
+	public void OnPointerUp(PointerEventData pointerEventData)
+	{
+		/*criatura.transform.DOScale(1, 0.1f);
+		if (criatura.activeSelf == true)
+		{
+			if (m_Collider.enabled == false)
+			{
+				m_Collider.enabled = true;
+			}
+		}*/
+
+		EndDrag();
+	}
+
 
 	public void OnInitializePotentialDrag(PointerEventData eventData)
 	{
 		originalPos = criatura.transform.position;
-		criatura.transform.localScale *= 1.5f; //aumenta em 50% o tamanho do sprite quando clicado
+		//criatura.transform.DOScale(1.5f, 0.1f); //aumenta a criatura usando o dotween em 0.1s
 		m_Collider.enabled = false; //desliga o colisor e permite arrastar por cima de outros objetos
 	}
 
 	public void OnDrag(PointerEventData eventData)
 	{
 
-		//var oldColor = m_spriteRenderer.color;
-
 		if (eventData.dragging)
 		{
-
 			//pra fazer a criatura arrastada acompanhar a câmera
 
 			var cam = eventData.pressEventCamera;
 			var oldZ = criatura.transform.position.z;
 			var newPos = cam.ScreenToWorldPoint(eventData.position);
+
 			newPos.z = oldZ;
+
 			criatura.transform.position = newPos;
+
+			Vector3 oldPos = new Vector3(originalPos.x, originalPos.y, oldZ);
 
 		}
 
@@ -131,9 +145,11 @@ public class Draggable : MonoBehaviour, /*IPointerClickHandler,*/ IPointerEnterH
 			m_spriteRenderer.material.color = new Color(1f, 1f, 1f, 1f); //retorna a opacidade pra 100%
 		}
 
+
 	}
 
-	public void OnEndDrag(PointerEventData pointerEventData)
+	//public void OnEndDrag(PointerEventData pointerEventData)
+	public void EndDrag()
 	{
 		Vector2 direction = new Vector2(0f, 0f);
 		var cast = Physics2D.CircleCast(criatura.transform.position, 1f, direction);
@@ -152,21 +168,22 @@ public class Draggable : MonoBehaviour, /*IPointerClickHandler,*/ IPointerEnterH
 			if (cast.transform.tag == "Other")
 			{
 				Debug.Log("Touched something bad");
+				
 				criatura.transform.position = originalPos; //leva o bichinho de volta pra onde ele estava
+				criatura.transform.DOScale(1f, 0.1f);
 				m_spriteRenderer.color = Color.cyan; //retorna para a cor original do sprite
 				m_spriteRenderer.material.color = new Color(1f, 1f, 1f, 1f); //retorna a opacidade pra 100%
+				m_Collider.enabled = true;
+
+				
 			}
 		}
 
 		else
 		{
 			Debug.Log("Chão");
+			m_Collider.enabled = true;
+			criatura.transform.DOScale(1f, 0.1f);
 		}
-
-		Debug.Log("Dropou");
-		m_Collider.enabled = true;
-		criatura.transform.localScale /= 1.5f; //retorna o sprite ao tamanho normal 
-
 	}
-
 }
