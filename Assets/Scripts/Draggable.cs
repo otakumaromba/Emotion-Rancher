@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class Draggable : MonoBehaviour, IDragHandler, IEndDragHandler, IInitializePotentialDragHandler
+public class Draggable : MonoBehaviour, /*IPointerClickHandler,*/ IPointerEnterHandler, IPointerExitHandler, IDragHandler, IEndDragHandler, IInitializePotentialDragHandler
 {
 
 	public GameObject criatura;
@@ -19,6 +19,9 @@ public class Draggable : MonoBehaviour, IDragHandler, IEndDragHandler, IInitiali
 	private SpriteRenderer m_spriteRenderer;
 	private Color m_NewColor;
 
+	public GameObject creatureName;
+
+	private bool onHover;
 
 	void Start()
     {
@@ -41,6 +44,45 @@ public class Draggable : MonoBehaviour, IDragHandler, IEndDragHandler, IInitiali
     {
         
     }
+
+	public void OnPointerClick(PointerEventData pointerEventData)
+	{
+		Debug.Log("Clicou na criatura");
+		OnEndDrag(pointerEventData);
+	}
+
+
+	public void OnPointerEnter(PointerEventData pointerEventData)
+	{
+		Debug.Log("Hover na criatura");
+		onHover = true;
+		StartCoroutine("Wait");
+		
+	}
+
+	public void OnPointerExit(PointerEventData pointerEventData)
+	{
+		Debug.Log("Saiu do hover na criatura");
+		onHover = false;
+		if (creatureName.activeSelf == true)
+		{
+			creatureName.SetActive(false);
+		}
+	}
+
+	IEnumerator Wait()
+	{
+		Debug.Log("Esperando");
+		yield return new WaitForSecondsRealtime(0.5f);
+		if (onHover == true)
+		{
+			if (creatureName.activeSelf == false)
+			{
+				creatureName.SetActive(true);
+			}
+		}
+	}
+
 
 	public void OnInitializePotentialDrag(PointerEventData eventData)
 	{
