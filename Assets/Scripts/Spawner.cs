@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -27,12 +28,19 @@ public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 		//spawns a new criature just below the combinator
 
 		Debug.Log(name + " Spawner Clicked!");
+
+		transform.DOScale(8f, 0.5f);
+		transform.DOScale(1f, 0.5f);
+
 		Vector3 m_pos = combinator.transform.position;
 		m_pos.y -= 4;
 
-		var instance = Instantiate(criatura, m_pos, Quaternion.identity);
+		combinator.transform.DOScale(20f, 0.5f);
 
+		var instance = Instantiate(criatura, m_pos, Quaternion.identity);
 		instance.GetComponent<Draggable>().Initialize(combinator);
+
+		combinator.transform.DOScale(5f, 0.5f);
 	}
 
 	public void OnPointerEnter(PointerEventData pointerEventData) { }

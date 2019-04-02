@@ -103,7 +103,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IEndDragHandler, IInitiali
 				Debug.Log("Hora de morfar");
 				criatura.SetActive(false); //desliga o bicho
 
-				combinator.transform.DOScale(10f, 0.5f);
+				combinator.transform.DOScale(20f, 0.5f);
 				combinator.transform.DOScale(5f, 0.5f);
 			}
 
