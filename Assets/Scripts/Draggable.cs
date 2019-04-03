@@ -9,6 +9,7 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 	public GameObject criatura;
 	public GameObject combinator;
+	public GameObject harvester;
 
 	public GameObject under;
 
@@ -31,14 +32,13 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 		m_Collider = GetComponent<BoxCollider2D>();
 		m_spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 		var originalPos = criatura.transform.position; //pega a posição inicial do bicho
-
 	}
 
-	public void Initialize(GameObject combinator)
+	public void Initialize(GameObject combinator, GameObject harvester)
 	{
 		this.combinator = combinator;
+		this.harvester = harvester;
 	}
-
 
     // Update is called once per frame
     void Update()
@@ -130,8 +130,14 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 		{
 			Debug.Log("Em cima do Combinator");
 		}
-		
-			if (cast == true && cast.transform.tag != "Combinator") //se no hover estiver encostando no collider de algo que não for o combinator
+
+		if (cast == true && cast.transform.tag == "Harvester")
+		{
+			Debug.Log("Em cima do Harvester");
+		}
+
+
+		if (cast == true && cast.transform.tag == "Other") //se no hover estiver encostando no collider de algo que não for o combinator ou o harvester
 		{
 			Debug.Log("Há algo ruim embaixo");
 			m_spriteRenderer.color = Color.red; //pinta o sprite de vermelho
@@ -164,6 +170,16 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 				combinator.transform.DOScale(20f, 0.5f);
 				combinator.transform.DOScale(5f, 0.5f);
 			}
+
+			if (cast.transform.tag == "Harvester")
+			{
+				Debug.Log("Hora de chupar");
+				criatura.SetActive(false); //desliga o bicho
+
+				harvester.transform.DOScale(12f, 0.5f);
+				harvester.transform.DOScale(3f, 0.5f);
+			}
+
 
 			if (cast.transform.tag == "Other")
 			{

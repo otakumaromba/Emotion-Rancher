@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 
 	public GameObject criatura;
 	public GameObject combinator;
+	public GameObject harvester;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,7 @@ public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 		combinator.transform.DOScale(20f, 0.5f);
 
 		var instance = Instantiate(criatura, m_pos, Quaternion.identity);
-		instance.GetComponent<Draggable>().Initialize(combinator);
+		instance.GetComponent<Draggable>().Initialize(combinator, harvester);
 
 		combinator.transform.DOScale(5f, 0.5f);
 	}
