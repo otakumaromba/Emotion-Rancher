@@ -169,6 +169,12 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 				combinator.transform.DOScale(20f, 0.5f);
 				combinator.transform.DOScale(5f, 0.5f);
+
+
+				string creatureType = GetComponent<CreatureType>().ID;
+
+				CombineCreature combineCreature = cast.rigidbody.gameObject.GetComponent<CombineCreature>();
+				combineCreature.SetCreatureID(creatureType);
 			}
 
 			if (cast.transform.tag == "Harvester")

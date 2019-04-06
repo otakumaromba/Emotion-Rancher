@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreatureType : MonoBehaviour
 {
 
-	public string ID;
+	public string ID = "a";
 	public string creatureName;
 	public int cost;
 	public int gemYeld;
@@ -14,7 +14,6 @@ public class CreatureType : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
 		//obter ID, nome, custo e gemYeld da criatura a partir do script combineCreature
 
     }

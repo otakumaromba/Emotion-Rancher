@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\xC9 um [nome da criatura]!"
+  m_Text: "\xC9 um [CreatureID]!"
 --- !u!1 &6345883440872879552
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,11 +336,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criatura: {fileID: 6345883440872879552}
   combinator: {fileID: 0}
+  harvester: {fileID: 0}
   under: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 2048
   originalPos: {x: 0, y: 0}
+  newPos: {x: 0, y: 0, z: 0}
   creatureName: {fileID: 1056845914610688503}
 --- !u!114 &4383810523687506388
 MonoBehaviour:
