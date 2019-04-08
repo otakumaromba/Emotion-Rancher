@@ -137,7 +137,7 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 		}
 
 
-		if (cast == true && cast.transform.tag == "Other") //se no hover estiver encostando no collider de algo que não for o combinator ou o harvester
+		if (cast == true && cast.transform.tag == "Other") //se no hover estiver encostando no collider de algo que não for o combinator ou o harvester)
 		{
 			Debug.Log("Há algo ruim embaixo");
 			m_spriteRenderer.color = Color.red; //pinta o sprite de vermelho
