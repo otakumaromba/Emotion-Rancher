@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using System;
 
 public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IDragHandler, /*IEndDragHandler, */ IInitializePotentialDragHandler
 {
-
 	public GameObject criatura;
 	public GameObject combinator;
 	public GameObject harvester;
@@ -18,10 +18,12 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 	public Vector2 originalPos;
 	public Vector3 newPos;
 
+	
+	public GameObject creatureName;
+
 	private SpriteRenderer m_spriteRenderer;
 	private Color m_NewColor;
 
-	public GameObject creatureName;
 
 	private bool onHover;
 	private bool clickedStatus;
@@ -84,15 +86,6 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 	public void OnPointerUp(PointerEventData pointerEventData)
 	{
-		/*criatura.transform.DOScale(1, 0.1f);
-		if (criatura.activeSelf == true)
-		{
-			if (m_Collider.enabled == false)
-			{
-				m_Collider.enabled = true;
-			}
-		}*/
-
 		EndDrag();
 	}
 
@@ -154,7 +147,6 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 	}
 
-	//public void OnEndDrag(PointerEventData pointerEventData)
 	public void EndDrag()
 	{
 		Vector2 direction = new Vector2(0f, 0f);
@@ -162,43 +154,21 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 		if (cast)
 		{
-			if (cast.transform.tag == "Combinator")
+
+			var building = cast.collider.GetComponent<Building>();
+			if (building)
 			{
-				Debug.Log("Hora de morfar");
-				criatura.SetActive(false); //desliga o bicho
-
-				combinator.transform.DOScale(20f, 0.5f);
-				combinator.transform.DOScale(5f, 0.5f);
-
-
-				string creatureType = GetComponent<CreatureType>().ID;
-
-				CombineCreature combineCreature = cast.rigidbody.gameObject.GetComponent<CombineCreature>();
-				combineCreature.SetCreatureID(creatureType);
+				if (!building.OnObjectDrop(this))
+				{
+					ReturnToOriginalPosition();
+				}
 			}
 
-			if (cast.transform.tag == "Harvester")
+			else
 			{
-				Debug.Log("Hora de chupar");
-				criatura.SetActive(false); //desliga o bicho
-
-				harvester.transform.DOScale(12f, 0.5f);
-				harvester.transform.DOScale(3f, 0.5f);
+				ReturnToOriginalPosition();
 			}
-
-
-			if (cast.transform.tag == "Other")
-			{
-				Debug.Log("Touched something bad");
-				
-				criatura.transform.position = originalPos; //leva o bichinho de volta pra onde ele estava
-				criatura.transform.DOScale(1f, 0.1f);
-				m_spriteRenderer.color = Color.cyan; //retorna para a cor original do sprite
-				m_spriteRenderer.material.color = new Color(1f, 1f, 1f, 1f); //retorna a opacidade pra 100%
-				m_Collider.enabled = true;
-
-				
-			}
+			
 		}
 
 		else
@@ -207,5 +177,16 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 			m_Collider.enabled = true;
 			criatura.transform.DOScale(1f, 0.1f);
 		}
+	}
+
+	private void ReturnToOriginalPosition()
+	{
+		Debug.Log("Touched something bad");
+
+		criatura.transform.position = originalPos; //leva o bichinho de volta pra onde ele estava
+		criatura.transform.DOScale(1f, 0.1f);
+		m_spriteRenderer.color = Color.cyan; //retorna para a cor original do sprite
+		m_spriteRenderer.material.color = new Color(1f, 1f, 1f, 1f); //retorna a opacidade pra 100%
+		m_Collider.enabled = true;
 	}
 }

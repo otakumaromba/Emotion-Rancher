@@ -29,14 +29,14 @@ public class PlayerMovement : MonoBehaviour
 		rb.velocity = (movement * speed);
 	}
 
-	public void SavePlayer()
+	/*public void SaveGame()
 	{
-		SaveSystem.SavePlayer(this);
+		SaveSystem.SaveGame();
 	}
 
-	public void LoadPlayer()
+	public void LoadGame()
 	{
-		PlayerData data = SaveSystem.LoadPlayer();
+		PlayerData data = SaveSystem.LoadGame();
 
 		Vector3 position;
 		position.x = data.position[0];
@@ -44,6 +44,6 @@ public class PlayerMovement : MonoBehaviour
 		position.z = data.position[2];
 
 		transform.position = position;
-	}
+	}*/
 
 }

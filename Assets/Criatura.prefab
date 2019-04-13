@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3950241855122007549}
   - component: {fileID: 7326271955087182930}
   - component: {fileID: 4950861557587913149}
-  - component: {fileID: 686722229152042045}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -100,18 +99,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &686722229152042045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056845914610688503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d02d58ceff75842b561504d1eafb3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2030770675413185184
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +191,7 @@ GameObject:
   - component: {fileID: 6345883440872879558}
   - component: {fileID: 6345883440872879559}
   - component: {fileID: 6345883440872879419}
-  - component: {fileID: 4383810523687506388}
+  - component: {fileID: 4127868422762903904}
   m_Layer: 12
   m_Name: Criatura
   m_TagString: Other
@@ -344,7 +331,7 @@ MonoBehaviour:
   originalPos: {x: 0, y: 0}
   newPos: {x: 0, y: 0, z: 0}
   creatureName: {fileID: 1056845914610688503}
---- !u!114 &4383810523687506388
+--- !u!114 &4127868422762903904
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -353,11 +340,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6345883440872879552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a83ce6bdeb8d69947a47f8121b186e7d, type: 3}
+  m_Script: {fileID: 11500000, guid: faa19600e0501dc40b7f05d7abd86e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 8316763705792602046}
   ID: 
-  creatureName: 
-  cost: 0
-  gemYeld: 0
-  m_spriteRenderer: {fileID: 0}

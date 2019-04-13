@@ -36,12 +36,36 @@ public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 		Vector3 m_pos = combinator.transform.position;
 		m_pos.y -= 4;
 
-		combinator.transform.DOScale(20f, 0.5f);
+		var combinatorComponent = combinator.GetComponent<Combinator>();
 
-		var instance = Instantiate(criatura, m_pos, Quaternion.identity);
-		instance.GetComponent<Draggable>().Initialize(combinator, harvester);
+		if (combinatorComponent.criatura1 && combinatorComponent.criatura2)
+		{
 
-		combinator.transform.DOScale(5f, 0.5f);
+			var instance = Instantiate(criatura, m_pos, Quaternion.identity);
+			instance.GetComponent<Draggable>().Initialize(combinator, harvester);
+
+			combinator.transform.DOScale(20f, 0.5f);
+
+			string name1 = combinatorComponent.criatura1.ID;
+			string name2 = combinatorComponent.criatura2.ID;
+
+			string newName = $"({name1}{name2})";
+
+			var criaturaComponente = instance.GetComponent<Criatura>();
+			criaturaComponente.Initialize(newName);
+
+			combinator.transform.DOScale(5f, 0.5f);
+
+			Debug.Log("Spawnada criatura " + criaturaComponente.ID);
+
+			Destroy(combinatorComponent.criatura1.gameObject);
+			Destroy(combinatorComponent.criatura2.gameObject);
+		}
+		else
+		{
+			Debug.Log("Caralho menor");
+		}
+		
 	}
 
 	public void OnPointerEnter(PointerEventData pointerEventData) { }
