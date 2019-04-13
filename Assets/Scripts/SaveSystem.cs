@@ -6,9 +6,21 @@ using System.Collections.Generic;
 public class SaveSystem : MonoBehaviour
 {
 
+	public static bool isGameToBeLoaded = false;
+
 	public GameObject combinator;
 	public GameObject harvester;
 	public GameObject creaturePrefab;
+
+
+	public void Start()
+	{
+
+		if (isGameToBeLoaded)
+		{
+			LoadGame();
+		}
+	}
 
 	public void SaveGame()
 	{
@@ -46,8 +58,6 @@ public class SaveSystem : MonoBehaviour
 			ReloadCreatures(data);
 			ReloadPlayer(data.player);
 
-			Debug.Log("meucu");
-
 		}
 		else
 		{
@@ -66,11 +76,15 @@ public class SaveSystem : MonoBehaviour
 			Destroy(bicho.gameObject);
 		}
 
+		
+
 		foreach (var c in data.creatures)
 		{
 			CreateCreature(c);
-
 		}
+
+		ReloadCombinatorCreatures(data);
+
 
 	}
 
@@ -96,10 +110,12 @@ public class SaveSystem : MonoBehaviour
 		if (combinatorComponent.criatura1)
 		{
 			Destroy(combinatorComponent.criatura1);
+			Debug.Log("Destruiu criatura 1");
 		}
 		if (combinatorComponent.criatura2)
 		{
 			Destroy(combinatorComponent.criatura2);
+			Debug.Log("Destruiu criatura 2");
 		}
 
 		if (data.combinatorCreature1 != null)
@@ -107,14 +123,18 @@ public class SaveSystem : MonoBehaviour
 			criatura1 = CreateCreature(data.combinatorCreature1);
 			criatura1.SetActive(false);
 			combinatorComponent.criatura1 = criatura1.GetComponent<Criatura>();
+			Debug.Log("Recriou criatura 1");
 		}
 		if (data.combinatorCreature2 != null)
 		{
 			criatura2 = CreateCreature(data.combinatorCreature2);
 			criatura2.SetActive(false);
 			combinatorComponent.criatura2 = criatura2.GetComponent<Criatura>();
+			Debug.Log("Recriou criatura 2");
 		}
 
+		Debug.Log("Reloadou criaturas do combinator");
+		
 	}
 
 	public void ReloadPlayer(PlayerData playerData)

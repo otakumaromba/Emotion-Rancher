@@ -23,9 +23,21 @@ public class MainMenu : MonoBehaviour
 		Application.Quit();
 	}
 
-	public void StartGame()
+	public void StartNewGame()
 	{
 		Debug.Log("Starting game");
+
+		SaveSystem.isGameToBeLoaded = false;
+
+		SceneManager.LoadScene("SampleScene");
+	}
+
+	public void ContinueGame()
+	{
+		Debug.Log("Loading game");
+
+		SaveSystem.isGameToBeLoaded = true;
+
 		SceneManager.LoadScene("SampleScene");
 	}
 
