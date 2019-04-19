@@ -11,17 +11,17 @@ public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 	public GameObject combinator;
 	public GameObject harvester;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-		
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
 
 	public void OnPointerClick(PointerEventData pointerEventData)
 	{
@@ -65,11 +65,11 @@ public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 		{
 			Debug.Log("Caralho menor");
 		}
-		
+
 	}
 
 	public void OnPointerEnter(PointerEventData pointerEventData) { }
 	public void OnPointerExit(PointerEventData pointerEventData) { }
 
-
 }
+

@@ -40,6 +40,7 @@ public class Combinator : Building
 		}
 		else
 		{
+			//GetComponentInChildren<CombinatorImage1>().OnReceivingCreature(criatura);
 			criatura1 = criatura;
 		}
 
