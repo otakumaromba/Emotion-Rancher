@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class MakeGrana : MonoBehaviour, IPointerClickHandler
 {
@@ -19,11 +20,13 @@ public class MakeGrana : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void FixedUpdate()
     {
-		textGemas.text = "Quantidade de gemas: " + grana.ToString();
+		textGemas.text = "$: " + grana.ToString();
     }
 
 	public void OnPointerClick(PointerEventData pointerEventData)
 	{
 		grana += 1;
+		transform.DOScale(8f, 0.5f);
+		transform.DOScale(1f, 0.5f);
 	}
 }
