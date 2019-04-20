@@ -13,6 +13,8 @@ public class Combinator : Building
 
 	public Criatura criatura1, criatura2;
 
+	public CombinatorImage img1, img2;
+
 	public override bool OnObjectDrop(Draggable draggable)
 	{
 
@@ -35,12 +37,13 @@ public class Combinator : Building
 			}
 			else
 			{
+				img2.OnReceivingCreature(criatura);
 				criatura2 = criatura;
 			}
 		}
 		else
 		{
-			//GetComponentInChildren<CombinatorImage1>().OnReceivingCreature(criatura);
+			img1.OnReceivingCreature(criatura);
 			criatura1 = criatura;
 		}
 

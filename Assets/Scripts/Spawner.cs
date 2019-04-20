@@ -60,6 +60,9 @@ public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 
 			Destroy(combinatorComponent.criatura1.gameObject);
 			Destroy(combinatorComponent.criatura2.gameObject);
+
+			combinatorComponent.img1.OnRemovingCreature();
+			combinatorComponent.img2.OnRemovingCreature();
 		}
 		else
 		{
