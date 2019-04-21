@@ -9,14 +9,11 @@ public class Criatura : MonoBehaviour
 
 	public string ID;
 
-	public Image image;
-
 	public Sprite sprite;
 
     void Start()
     {
 		sprite = GetComponent<SpriteRenderer>().sprite;
-		image = GetComponent<Image>();
     }
 
     void Update()

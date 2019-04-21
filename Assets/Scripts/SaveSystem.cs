@@ -12,6 +12,7 @@ public class SaveSystem : MonoBehaviour
 	public GameObject harvester;
 	public GameObject creaturePrefab;
 
+	public MakeGrana makeGrana;
 
 	public void Start()
 	{
@@ -37,7 +38,7 @@ public class SaveSystem : MonoBehaviour
 
 		FileStream stream = new FileStream(path, FileMode.Create);
 
-		GameSaveData data = new GameSaveData(criaturas, player);
+		GameSaveData data = new GameSaveData(criaturas, player, makeGrana.grana);
 
 		formatter.Serialize(stream, data);
 		stream.Close();
@@ -57,6 +58,8 @@ public class SaveSystem : MonoBehaviour
 
 			ReloadCreatures(data);
 			ReloadPlayer(data.player);
+
+			makeGrana.grana = data.gems;
 
 		}
 		else

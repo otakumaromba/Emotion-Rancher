@@ -12,9 +12,13 @@ public class GameSaveData
 	public CreatureData combinatorCreature1;
 	public CreatureData combinatorCreature2;
 
-	public GameSaveData(IEnumerable<Criatura> criaturas, PlayerMovement player)
+	public int gems;
+
+	public GameSaveData(IEnumerable<Criatura> criaturas, PlayerMovement player, int gems)
 	{
 		this.player = new PlayerData(player);
+
+		this.gems = gems;
 
 		creatures = new List<CreatureData>();
 
@@ -31,16 +35,10 @@ public class GameSaveData
 		}
 		if (combinator.criatura2)
 		{
-			combinatorCreature1 = new CreatureData(combinator.criatura2);
+			combinatorCreature2 = new CreatureData(combinator.criatura2);
 		}
 	}
-
-	
-
 }
-
-
-
 
 [System.Serializable]
 public class CreatureData

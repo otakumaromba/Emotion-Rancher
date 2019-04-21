@@ -15,6 +15,7 @@ public class Combinator : Building
 
 	public CombinatorImage img1, img2;
 
+
 	public override bool OnObjectDrop(Draggable draggable)
 	{
 

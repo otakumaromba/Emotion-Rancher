@@ -10,14 +10,13 @@ public class CombinatorImage : MonoBehaviour
 	public Combinator combinator;
 	public Sprite m_Sprite;
 
-
-  
-
-    public void OnReceivingCreature(Criatura criatura)
+	public void OnReceivingCreature(Criatura criatura)
     {
+		var spriteRenderer = criatura.GetComponent<SpriteRenderer>();
+
 		m_Image.enabled = true;
-		m_Image.sprite = criatura.sprite;
-		m_Image.color = criatura.GetComponent<SpriteRenderer>().color;
+		m_Image.sprite = spriteRenderer.sprite;
+		m_Image.color = spriteRenderer.color;
 		
 	}
 
