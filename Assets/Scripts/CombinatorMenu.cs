@@ -14,6 +14,7 @@ public class CombinatorMenu : MonoBehaviour
 		{
 			combinator.img1.OnReceivingCreature(combinator.criatura1);
 		}
+
 		if (combinator.criatura2)
 		{
 			combinator.img2.OnReceivingCreature(combinator.criatura2);

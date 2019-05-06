@@ -10,6 +10,7 @@ TagManager:
   - Combinator
   - Other
   - Harvester
+  - Analyzer
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,10 @@ public class GameSaveData
 	public CreatureData combinatorCreature1;
 	public CreatureData combinatorCreature2;
 
+	public CreatureData analyzerCreature;
+
+	public CreatureData harvesterCreature;
+
 	public int gems;
 
 	public GameSaveData(IEnumerable<Criatura> criaturas, PlayerMovement player, int gems)
@@ -37,6 +41,21 @@ public class GameSaveData
 		{
 			combinatorCreature2 = new CreatureData(combinator.criatura2);
 		}
+
+		Analyzer analyzer = GameObject.FindObjectOfType<Analyzer>();
+
+		if (analyzer.criatura1)
+		{
+			analyzerCreature = new CreatureData(analyzer.criatura1);
+		}
+
+		Harvester harvester = GameObject.FindObjectOfType<Harvester>();
+
+		if (harvester.criatura1)
+		{
+			harvesterCreature = new CreatureData(harvester.criatura1);
+		}
+
 	}
 }
 

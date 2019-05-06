@@ -4,16 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Combinator : Building
+public class Analyzer : Building
 {
 
 	public float originalSize = 5f;
 	public float delay = 0.5f;
 	public float sizeScaler = 4f;
 
-	public Criatura criatura1, criatura2;
+	public Criatura criatura1;
 
-	public CombinatorImage img1, img2;
+	public AnalyzerImage img1;
 
 
 	public override bool OnObjectDrop(Draggable draggable)
@@ -29,27 +29,21 @@ public class Combinator : Building
 
 	private bool AddCreature(Criatura criatura, Draggable draggable)
 	{
-		if (criatura1)
+		if (!criatura1)
 		{
-			if (criatura2){
-				return false;
-			}
-			else
-			{
-				img2.OnReceivingCreature(criatura);
-				criatura2 = criatura;
-			}
+			Debug.Log("chegou aqui");
+			img1.OnReceivingCreature(criatura);
+			criatura1 = criatura;
 		}
 		else
 		{
-			img1.OnReceivingCreature(criatura);
-			criatura1 = criatura;
+			return false;
 		}
 
 		draggable.criatura.SetActive(false); //desliga o bicho
 
-		draggable.combinator.transform.DOScale(originalSize * sizeScaler, delay);
-		draggable.combinator.transform.DOScale(originalSize, delay);
+		draggable.analyzer.transform.DOScale(originalSize * sizeScaler, delay);
+		draggable.analyzer.transform.DOScale(originalSize, delay);
 
 		return true;
 	}

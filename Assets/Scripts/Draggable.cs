@@ -10,6 +10,7 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 	public GameObject criatura;
 	public GameObject combinator;
 	public GameObject harvester;
+	public GameObject analyzer;
 
 	public GameObject under;
 
@@ -36,10 +37,11 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 		var originalPos = criatura.transform.position; //pega a posição inicial do bicho
 	}
 
-	public void Initialize(GameObject combinator, GameObject harvester)
+	public void Initialize(GameObject combinator, GameObject harvester, GameObject analyzer)
 	{
 		this.combinator = combinator;
 		this.harvester = harvester;
+		this.analyzer = analyzer;
 	}
 
     // Update is called once per frame
@@ -118,16 +120,6 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 		Vector2 direction = new Vector2(0f, 0f);
 		var cast = Physics2D.CircleCast(criatura.transform.position, 1f, direction);
-
-		if (cast == true && cast.transform.tag == "Combinator")
-		{
-			Debug.Log("Em cima do Combinator");
-		}
-
-		if (cast == true && cast.transform.tag == "Harvester")
-		{
-			Debug.Log("Em cima do Harvester");
-		}
 
 
 		if (cast == true && cast.transform.tag == "Other") //se no hover estiver encostando no collider de algo que não for o combinator ou o harvester)

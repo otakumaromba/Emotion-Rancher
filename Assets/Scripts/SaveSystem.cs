@@ -10,6 +10,7 @@ public class SaveSystem : MonoBehaviour
 
 	public GameObject combinator;
 	public GameObject harvester;
+	public GameObject analyzer;
 	public GameObject creaturePrefab;
 
 	public MakeGrana makeGrana;
@@ -88,6 +89,9 @@ public class SaveSystem : MonoBehaviour
 
 		ReloadCombinatorCreatures(data);
 
+		ReloadAnalyzerCreature(data);
+
+		ReloadHarvesterCreature(data);
 
 	}
 
@@ -98,7 +102,7 @@ public class SaveSystem : MonoBehaviour
 
 		instance.transform.position = new Vector3(c.position[0], c.position[1], c.position[2]);
 
-		instance.GetComponent<Draggable>().Initialize(combinator, harvester);
+		instance.GetComponent<Draggable>().Initialize(combinator, harvester, analyzer);
 
 		return instance;
 	}
@@ -139,6 +143,57 @@ public class SaveSystem : MonoBehaviour
 		Debug.Log("Reloadou criaturas do combinator");
 		
 	}
+
+	public void ReloadAnalyzerCreature(GameSaveData data)
+	{
+
+		GameObject criatura1;
+
+		var analyzerComponent = analyzer.GetComponent<Analyzer>();
+
+		if (analyzerComponent.criatura1)
+		{
+			Destroy(analyzerComponent.criatura1);
+			Debug.Log("Destruiu criatura analyzer");
+		}
+
+		if (data.analyzerCreature != null)
+		{
+			criatura1 = CreateCreature(data.analyzerCreature);
+			criatura1.SetActive(false);
+			analyzerComponent.criatura1 = criatura1.GetComponent<Criatura>();
+			Debug.Log("Recriou criatura analyzer");
+		}
+
+		Debug.Log("Reloadou criaturas do analyzer");
+
+	}
+
+	public void ReloadHarvesterCreature(GameSaveData data)
+	{
+
+		GameObject criatura1;
+
+		var harvesterComponent = harvester.GetComponent<Harvester>();
+
+		if (harvesterComponent.criatura1)
+		{
+			Destroy(harvesterComponent.criatura1);
+			Debug.Log("Destruiu criatura harvester");
+		}
+
+		if (data.harvesterCreature != null)
+		{
+			criatura1 = CreateCreature(data.harvesterCreature);
+			criatura1.SetActive(false);
+			harvesterComponent.criatura1 = criatura1.GetComponent<Criatura>();
+			Debug.Log("Recriou criatura harvester");
+		}
+
+		Debug.Log("Reloadou criaturas do harvester");
+
+	}
+
 
 	public void ReloadPlayer(PlayerData playerData)
 	{

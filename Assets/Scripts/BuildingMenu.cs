@@ -12,7 +12,6 @@ public class BuildingMenu : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     // Start is called before the first frame update
     void Start()
     {
-		Debug.Log("Interface funciona");
     }
 
 	public void OnPointerEnter(PointerEventData pointerEventData)
@@ -35,14 +34,21 @@ public class BuildingMenu : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 	//Detect if a click occurs
 	public void OnPointerClick(PointerEventData pointerEventData)
 	{
-		Debug.Log(name + " Game Object Clicked!");
 		if (buildingMenu.activeSelf == false)
 		{
 			buildingMenu.SetActive(true);
 
 			var bidoof = buildingMenu.GetComponent<CombinatorMenu>();
-			if(bidoof)
+			if (bidoof)
 				bidoof.OnOpenMenu();
+
+			var bidoof2 = buildingMenu.GetComponent<AnalyzerMenu>();
+			if (bidoof2)
+				bidoof2.OnOpenMenu();
+
+			var bidoof3 = buildingMenu.GetComponent<HarvesterMenu>();
+			if (bidoof3)
+				bidoof3.OnOpenMenu();
 
 		}
 
