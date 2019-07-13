@@ -8,23 +8,46 @@ public class PauseMenu : MonoBehaviour
 {
 	public static bool GameIsPaused = false;
 
+	public GameObject menuCombinator;
+	public GameObject menuTeleporter;
+	public GameObject menuHarvester;
+	public GameObject menuAnalyzer;
+
+	public bool isMenuOpen = false;
+
 	public GameObject pauseMenuUI;
 
-    // Update is called once per frame
-    void Update()
-    {
+	public void Update()
+	{
+
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			if (GameIsPaused)
+
+			isMenuOpen = (menuCombinator.activeSelf) || (menuHarvester.activeSelf) || (menuTeleporter.activeSelf) || (menuAnalyzer.activeSelf);
+
+			if (!isMenuOpen)
 			{
-				Resume();
+				if (GameIsPaused)
+				{
+					Resume();
+				}
+				else
+				{
+					Pause();
+				}
 			}
-			else
+
+			if (isMenuOpen)
 			{
-				Pause();
+				menuCombinator.SetActive(false);
+				menuTeleporter.SetActive(false);
+				menuHarvester.SetActive(false);
+				menuAnalyzer.SetActive(false);
+
+
 			}
 		}
-    }
+	}
 
 	public void Resume()
 	{

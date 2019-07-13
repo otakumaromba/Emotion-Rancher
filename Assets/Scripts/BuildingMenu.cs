@@ -8,7 +8,6 @@ public class BuildingMenu : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
 	public GameObject buildingMenu;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +50,6 @@ public class BuildingMenu : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 				bidoof3.OnOpenMenu();
 
 		}
-
-
 	}
+
 }

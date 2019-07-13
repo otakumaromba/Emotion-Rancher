@@ -14,4 +14,21 @@ public class HarvesterMenu : MonoBehaviour
 			harvester.img1.OnReceivingCreature(harvester.criatura1);
 		}
 	}
+
+	/*private void Update()
+	{
+		CheckForEsc();
+	}
+
+	public void CheckForEsc()
+	{
+		if (this.gameObject == isActiveAndEnabled)
+		{
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				this.gameObject.SetActive(false);
+			}
+		}
+	}
+	*/
 }

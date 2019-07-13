@@ -19,5 +19,23 @@ public class CombinatorMenu : MonoBehaviour
 		{
 			combinator.img2.OnReceivingCreature(combinator.criatura2);
 		}
+			
 	}
+
+	/*private void Update()
+	{
+		CheckForEsc();
+	}
+
+	public void CheckForEsc()
+	{
+		if (this.gameObject == isActiveAndEnabled)
+		{
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				this.gameObject.SetActive(false);
+			}
+		}
+	}*/
+
 }

@@ -1442,7 +1442,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -5563,8 +5563,8 @@ Canvas:
   m_GameObject: {fileID: 2133874105}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_RenderMode: 0
+  m_Camera: {fileID: 534669904}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -5607,6 +5607,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9dcac911b2e715429dc53941d5e979e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuCombinator: {fileID: 591070171}
+  menuTeleporter: {fileID: 1655752458}
+  menuHarvester: {fileID: 567922653}
+  menuAnalyzer: {fileID: 2071337330}
+  isMenuOpen: 0
   pauseMenuUI: {fileID: 1798246791}
 --- !u!1 &2147116622
 GameObject:

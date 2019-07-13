@@ -14,4 +14,21 @@ public class AnalyzerMenu : MonoBehaviour
 			analyzer.img1.OnReceivingCreature(analyzer.criatura1);
 		}
 	}
+
+	/*private void Update()
+	{
+		CheckForEsc();
+	}
+
+	public void CheckForEsc()
+	{
+		if (this.gameObject == isActiveAndEnabled)
+		{
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				this.gameObject.SetActive(false);
+			}
+		}
+	}*/
+
 }
