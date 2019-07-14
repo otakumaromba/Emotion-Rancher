@@ -3,31 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BuildingMenu : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class BuildingMenu : MonoBehaviour, IPointerClickHandler
 {
 
 	public GameObject buildingMenu;
+	public RectTransform rectTransform;
 
     // Start is called before the first frame update
     void Start()
     {
     }
 
-	public void OnPointerEnter(PointerEventData pointerEventData)
+	void Update()
 	{
-		//Output to console the GameObject's name and the following message
-		Debug.Log("Cursor Entering " + name + " GameObject");
-	}
-
-	//Detect when Cursor leaves the GameObject
-	public void OnPointerExit(PointerEventData pointerEventData)
-	{
-		//Output the following message with the GameObject's name
-		Debug.Log("Cursor Exiting " + name + " GameObject");
-		if (buildingMenu.activeSelf == true)
+		if (Input.GetButtonDown("Fire1"))
 		{
-			buildingMenu.SetActive(false);
+			if (!RectTransformUtility.RectangleContainsScreenPoint(rectTransform, Input.mousePosition, null))
+			{
+				buildingMenu.SetActive(false);
+			}
+
 		}
+
 	}
 
 	//Detect if a click occurs
