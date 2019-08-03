@@ -27,6 +27,12 @@ public class BuildingMenu : MonoBehaviour, IPointerClickHandler
 
 	}
 
+	public void CloseMenuButton()
+	{
+		buildingMenu.SetActive(false);
+	}
+
+
 	//Detect if a click occurs
 	public void OnPointerClick(PointerEventData pointerEventData)
 	{
