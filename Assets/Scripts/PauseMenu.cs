@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
 	public GameObject menuTeleporter;
 	public GameObject menuHarvester;
 	public GameObject menuAnalyzer;
+	public GameObject buildingPanel;
 
 	public bool isMenuOpen = false;
 
@@ -23,7 +24,7 @@ public class PauseMenu : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 
-			isMenuOpen = (menuCombinator.activeSelf) || (menuHarvester.activeSelf) || (menuTeleporter.activeSelf) || (menuAnalyzer.activeSelf);
+			isMenuOpen = (menuCombinator.activeSelf) || (menuHarvester.activeSelf) || (menuTeleporter.activeSelf) || (menuAnalyzer.activeSelf) || (buildingPanel.activeSelf);
 
 			if (!isMenuOpen)
 			{
