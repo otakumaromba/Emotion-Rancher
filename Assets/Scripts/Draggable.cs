@@ -19,7 +19,7 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 	public Vector2 originalPos;
 	public Vector3 newPos;
 
-	
+
 	public GameObject creatureName;
 
 	private SpriteRenderer m_spriteRenderer;
@@ -30,7 +30,7 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 	private bool clickedStatus;
 
 	void Start()
-    {
+	{
 		//cam = Camera.main;
 		m_Collider = GetComponent<BoxCollider2D>();
 		m_spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -44,18 +44,18 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 		this.analyzer = analyzer;
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
 
 	public void OnPointerEnter(PointerEventData pointerEventData)
 	{
 		Debug.Log("Hover na criatura");
 		onHover = true;
 		StartCoroutine("WaitForName");
-		
+
 	}
 
 	public void OnPointerExit(PointerEventData pointerEventData)
@@ -122,14 +122,14 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 		var cast = Physics2D.CircleCast(criatura.transform.position, 1f, direction);
 
 
-		if (cast == true && cast.transform.tag == "Other") //se no hover estiver encostando no collider de algo que não for o combinator ou o harvester)
+		if ((cast == true) && (cast.transform.tag == "Other" || cast.transform.tag == "Building")) //se no hover estiver encostando no collider de algo que não for o combinator ou o harvester)
 		{
 			Debug.Log("Há algo ruim embaixo");
 			m_spriteRenderer.color = Color.red; //pinta o sprite de vermelho
 			m_spriteRenderer.material.color = new Color(1f, 1f, 1f, 0.6f); //ajusta a opacidade pra 60%
 		}
 
-		else if (cast != true)
+		else if (cast != true || cast.transform.tag == "Combinator" || cast.transform.tag == "DroppableBuilding") //se nao tiver nada ou um combinator embaixo
 		{
 			Debug.Log("Não há nada embaixo");
 			m_spriteRenderer.color = Color.cyan; //retorna para a cor original do sprite

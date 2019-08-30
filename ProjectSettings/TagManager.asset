@@ -11,6 +11,7 @@ TagManager:
   - Other
   - Harvester
   - Analyzer
+  - DroppableBuilding
   layers:
   - Default
   - TransparentFX
