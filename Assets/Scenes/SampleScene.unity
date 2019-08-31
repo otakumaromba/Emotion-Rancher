@@ -5787,8 +5787,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textCalendar: {fileID: 962086697}
-  minuteDurationInSeconds: 10
-  dayDurationInMinutes: 1
+  minuteDurationInSeconds: 60
+  dayDurationInMinutes: 10
   monthDurationInDays: 30
   yearDurationInMonths: 12
   totalSeconds: 0
