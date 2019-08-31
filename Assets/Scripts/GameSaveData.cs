@@ -18,11 +18,15 @@ public class GameSaveData
 
 	public int gems;
 
-	public GameSaveData(IEnumerable<Criatura> criaturas, PlayerMovement player, int gems)
+	public float startTime;
+
+	public GameSaveData(IEnumerable<Criatura> criaturas, PlayerMovement player, int gems, CalendarSystem calendarSystem)
 	{
 		this.player = new PlayerData(player);
 
 		this.gems = gems;
+
+		this.startTime = calendarSystem.startTime + Time.timeSinceLevelLoad;
 
 		creatures = new List<CreatureData>();
 
