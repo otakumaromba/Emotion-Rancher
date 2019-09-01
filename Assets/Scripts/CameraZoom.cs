@@ -10,7 +10,6 @@ public class CameraZoom : MonoBehaviour
     void Start()
     {
 
-		Debug.Log(Camera.main.orthographicSize);
 
     }
 

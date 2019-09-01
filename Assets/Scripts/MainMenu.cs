@@ -19,13 +19,11 @@ public class MainMenu : MonoBehaviour
 
 	public void QuitGame()
 	{
-		Debug.Log("Quitting game");
 		Application.Quit();
 	}
 
 	public void StartNewGame()
 	{
-		Debug.Log("Starting game");
 
 		SaveSystem.isGameToBeLoaded = false;
 
@@ -34,7 +32,6 @@ public class MainMenu : MonoBehaviour
 
 	public void ContinueGame()
 	{
-		Debug.Log("Loading game");
 
 		SaveSystem.isGameToBeLoaded = true;
 
