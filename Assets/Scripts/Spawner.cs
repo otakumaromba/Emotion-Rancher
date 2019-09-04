@@ -29,8 +29,6 @@ public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 
 		//spawns a new criature just below the combinator
 
-		Debug.Log(name + " Spawner Clicked!");
-
 		transform.DOScale(8f, 0.5f);
 		transform.DOScale(1f, 0.5f);
 
@@ -56,8 +54,6 @@ public class Spawner : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 			criaturaComponente.Initialize(newName);
 
 			combinator.transform.DOScale(5f, 0.5f);
-
-			Debug.Log("Spawnada criatura " + criaturaComponente.ID);
 
 			Destroy(combinatorComponent.criatura1.gameObject);
 			Destroy(combinatorComponent.criatura2.gameObject);

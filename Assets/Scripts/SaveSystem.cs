@@ -119,31 +119,25 @@ public class SaveSystem : MonoBehaviour
 
 		if (combinatorComponent.criatura1)
 		{
-			Destroy(combinatorComponent.criatura1);
-			Debug.Log("Destruiu criatura 1");
+			Destroy(combinatorComponent.criatura1); //destroi criatura 1
 		}
 		if (combinatorComponent.criatura2)
 		{
-			Destroy(combinatorComponent.criatura2);
-			Debug.Log("Destruiu criatura 2");
+			Destroy(combinatorComponent.criatura2); //destrói criatura 2
 		}
 
 		if (data.combinatorCreature1 != null)
 		{
-			criatura1 = CreateCreature(data.combinatorCreature1);
+			criatura1 = CreateCreature(data.combinatorCreature1); //recria criatura 1
 			criatura1.SetActive(false);
 			combinatorComponent.criatura1 = criatura1.GetComponent<Criatura>();
-			Debug.Log("Recriou criatura 1");
 		}
 		if (data.combinatorCreature2 != null)
 		{
-			criatura2 = CreateCreature(data.combinatorCreature2);
+			criatura2 = CreateCreature(data.combinatorCreature2); //recria criatura 2
 			criatura2.SetActive(false);
 			combinatorComponent.criatura2 = criatura2.GetComponent<Criatura>();
-			Debug.Log("Recriou criatura 2");
 		}
-
-		Debug.Log("Reloadou criaturas do combinator");
 		
 	}
 
@@ -156,19 +150,16 @@ public class SaveSystem : MonoBehaviour
 
 		if (analyzerComponent.criatura1)
 		{
-			Destroy(analyzerComponent.criatura1);
-			Debug.Log("Destruiu criatura analyzer");
+			Destroy(analyzerComponent.criatura1); //destrói criatura analyzer
 		}
 
 		if (data.analyzerCreature != null)
 		{
-			criatura1 = CreateCreature(data.analyzerCreature);
+			criatura1 = CreateCreature(data.analyzerCreature); //recria criatura analyzer
 			criatura1.SetActive(false);
 			analyzerComponent.criatura1 = criatura1.GetComponent<Criatura>();
-			Debug.Log("Recriou criatura analyzer");
 		}
 
-		Debug.Log("Reloadou criaturas do analyzer");
 
 	}
 
@@ -181,19 +172,16 @@ public class SaveSystem : MonoBehaviour
 
 		if (harvesterComponent.criatura1)
 		{
-			Destroy(harvesterComponent.criatura1);
-			Debug.Log("Destruiu criatura harvester");
+			Destroy(harvesterComponent.criatura1); //destrói criatura harvester
 		}
 
 		if (data.harvesterCreature != null)
 		{
-			criatura1 = CreateCreature(data.harvesterCreature);
+			criatura1 = CreateCreature(data.harvesterCreature); //recria criatura harvester
 			criatura1.SetActive(false);
 			harvesterComponent.criatura1 = criatura1.GetComponent<Criatura>();
-			Debug.Log("Recriou criatura harvester");
 		}
 
-		Debug.Log("Reloadou criaturas do harvester");
 
 	}
 

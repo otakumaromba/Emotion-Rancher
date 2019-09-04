@@ -52,7 +52,6 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 	public void OnPointerEnter(PointerEventData pointerEventData)
 	{
-		Debug.Log("Hover na criatura");
 		onHover = true;
 		StartCoroutine("WaitForName");
 
@@ -60,7 +59,6 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 	public void OnPointerExit(PointerEventData pointerEventData)
 	{
-		Debug.Log("Saiu do hover na criatura");
 		onHover = false;
 		if (creatureName.activeSelf == true)
 		{
@@ -68,9 +66,8 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 		}
 	}
 
-	IEnumerator WaitForName()
+	IEnumerator WaitForName() // espera um tempinho pra mostrar o nome da criatura
 	{
-		Debug.Log("Esperando para mostrar o nome");
 		yield return new WaitForSecondsRealtime(0.5f);
 		if (onHover == true)
 		{
@@ -124,14 +121,12 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 		if ((cast == true) && (cast.transform.tag == "Other" || cast.transform.tag == "Building")) //se no hover estiver encostando no collider de algo que não for o combinator ou o harvester)
 		{
-			Debug.Log("Há algo ruim embaixo");
 			m_spriteRenderer.color = Color.red; //pinta o sprite de vermelho
 			m_spriteRenderer.material.color = new Color(1f, 1f, 1f, 0.6f); //ajusta a opacidade pra 60%
 		}
 
 		else if (cast != true || cast.transform.tag == "Combinator" || cast.transform.tag == "DroppableBuilding") //se nao tiver nada ou um combinator embaixo
 		{
-			Debug.Log("Não há nada embaixo");
 			m_spriteRenderer.color = Color.cyan; //retorna para a cor original do sprite
 			m_spriteRenderer.material.color = new Color(1f, 1f, 1f, 1f); //retorna a opacidade pra 100%
 		}
@@ -165,7 +160,6 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 		else
 		{
-			Debug.Log("Chão");
 			m_Collider.enabled = true;
 			criatura.transform.DOScale(1f, 0.1f);
 		}
@@ -173,7 +167,6 @@ public class Draggable : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
 
 	private void ReturnToOriginalPosition()
 	{
-		Debug.Log("Touched something bad");
 
 		criatura.transform.position = originalPos; //leva o bichinho de volta pra onde ele estava
 		criatura.transform.DOScale(1f, 0.1f);
