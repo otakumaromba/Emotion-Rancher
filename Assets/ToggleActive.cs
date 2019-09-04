@@ -6,6 +6,7 @@ public class ToggleActive : MonoBehaviour
 {
 	public RectTransform rectTransform;
 	public GameObject buildingPanel;
+	public BuildingMenuButton buildingMenuButton;
 	int strike;
 
 	public void Update()
@@ -16,6 +17,7 @@ public class ToggleActive : MonoBehaviour
 			if (this.gameObject.activeSelf == true)
 			{
 				this.gameObject.SetActive(false);
+				buildingMenuButton.RevertBuildingButton();
 			}
 		}
 
@@ -24,6 +26,7 @@ public class ToggleActive : MonoBehaviour
 			if (!RectTransformUtility.RectangleContainsScreenPoint(rectTransform, Input.mousePosition, null))
 			{
 				buildingPanel.SetActive(false);
+				buildingMenuButton.RevertBuildingButton();
 				strike = 1;
 			}
 		}
@@ -37,7 +40,11 @@ public class ToggleActive : MonoBehaviour
 		{
 			this.gameObject.SetActive(false);
 		}
-		else
+		if (this.gameObject.activeSelf == false)
+		{
+			this.gameObject.SetActive(true);
+		}
+		/*else
 		{
 			if (strike != 1)
 			{
@@ -47,6 +54,6 @@ public class ToggleActive : MonoBehaviour
 			{
 				strike = 0;
 			}
-		}
+		}*/
     }
 }
